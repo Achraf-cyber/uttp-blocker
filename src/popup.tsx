@@ -48,7 +48,7 @@ const Popup: React.FC = () => {
     <div className="w-80 p-4 font-sans bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-lg">
       <h2 className="text-xl font-bold mb-4 text-center">UTTP Blocker</h2>
       <div className="flex flex-col gap-3">
-        {Object.keys(prefs.filters).map((key) => {
+        {Object.keys(filterLabels).map((key) => {
           const filterKey = key as keyof UserPreferences["filters"];
           return (
             <label
