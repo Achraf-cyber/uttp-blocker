@@ -183,4 +183,4 @@ async function main(): Promise<void> {
     observePageChanges();
 }
 
-main().then(() => console.log("ext: UTTP Blocker content script started"));
+main();

@@ -5,7 +5,7 @@
   "homepage_url": "https://achraf-cyber.github.io/uttp_blocker/",
   "minimum_chrome_version": "88",
   "description": "Block UTTP troll replies on YouTube and enjoy a distraction-free viewing experience.",
-  "version": "1.0",
+  "version": "1.0.1",
   "options_page": "options.html",
 "icons": {
     "16": "images/icon-16.png",

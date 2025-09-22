@@ -1,6 +1,6 @@
 {
   "name": "Uttp Blocker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Block UTTP troll replies on YouTube and enjoy a distraction-free viewing experience.",
   "main": "index.js",
   "scripts": {
