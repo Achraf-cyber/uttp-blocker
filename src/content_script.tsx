@@ -7,7 +7,7 @@ let currentFilters: Filters = getDefaultPreferences().filters;
 
 let channelsBlacklist: Set<string> = new Set();
 let forbiddenWords: Set<string> = new Set();
-let forgivableWords: Set<string> = new Set();
+let softWords: Set<string> = new Set();
 let forbiddenComments: Set<RegExp> = new Set();
 let forbidenWordInChannel: Set<string> = new Set();
 const processedNodes = new WeakSet<Node>();
@@ -29,7 +29,7 @@ const forbiddenChars = new Set([
 
 async function loadData(): Promise<void> {
     const compiled = await new Promise<any>(resolve => {
-        chrome.runtime.sendMessage({ type: GET_BLACKLIST }, response => resolve(response));
+        chrome.runtime.sendMessage({ type: GET_BLACKLIST }, (response: any) => resolve(response));
     });
 
     if (!compiled) {
@@ -38,11 +38,11 @@ async function loadData(): Promise<void> {
 
     channelsBlacklist = new Set(compiled.channels);
     forbiddenWords = new Set(compiled.words);
-    forgivableWords = new Set(compiled.softWords);
+    softWords = new Set(compiled.softWords);
     forbiddenComments = new Set(compiled.regex.map((r: string) => new RegExp(r, 'i')));
     forbidenWordInChannel = new Set(compiled.forbidenWordInChannel);
 
-    
+
 }
 
 function hideSpamNode(node: Element): void {
@@ -82,9 +82,10 @@ function processCommentNode(node: Node): void {
     const lowerComment = commentTextContent.toLowerCase();
 
     // Allow comments containing tolerated words if enabled
-    if (currentFilters.toleratedWordsInComment) {
-        for (const word of forgivableWords) {
+    if (currentFilters.filterSoftWordsInComment) {
+        for (const word of softWords) {
             if (lowerComment.includes(word)) {
+                hideSpamNode(comment);
                 processedNodes.add(node);
                 return;
             }
@@ -99,8 +100,8 @@ function processCommentNode(node: Node): void {
             }
         }
     }
-    
-        if (currentFilters.forbiddenWordsInChannelName) {
+
+    if (currentFilters.forbiddenWordsInChannelName) {
         for (const word of forbidenWordInChannel) {
             if (authorName.includes(word)) {
                 hideSpamNode(comment);

@@ -19,7 +19,7 @@ export interface Filters {
   blockedChannels: boolean;
   forbiddenWordsInChannelName: boolean;
   forbiddenWordsInComment: boolean;
-  toleratedWordsInComment: boolean;
+  filterSoftWordsInComment: boolean;
   forbiddenCommentPatterns: boolean;
 }
 

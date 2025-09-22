@@ -8,7 +8,7 @@ export function getDefaultPreferences(): UserPreferences {
       blockedChannels: true,
       forbiddenWordsInChannelName: true,
       forbiddenWordsInComment: true,
-      toleratedWordsInComment: true,
+      filterSoftWordsInComment: true,
       forbiddenCommentPatterns: true,
     },
   };

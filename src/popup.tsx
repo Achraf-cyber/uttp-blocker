@@ -10,7 +10,7 @@ const filterLabels: Record<keyof UserPreferences["filters"], string> = {
   blockedChannels: "Filter blocked channels",
   forbiddenWordsInChannelName: "Filter forbidden words in channel names",
   forbiddenWordsInComment: "Filter forbidden words in comments",
-  toleratedWordsInComment: "Allow tolerated words in comments",
+  filterSoftWordsInComment: "Filter soft words in comments",
   forbiddenCommentPatterns: "Filter forbidden comment patterns",
 };
 
